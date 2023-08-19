@@ -1,6 +1,6 @@
 # WiggetProperyApi1
-This is a collection of tests for widgets type integer or double.
-Before use to install :
+This is a collection of tests for widgets type integer or double. It has the exemple and you can run it.
+For to run your example you should  install :
   1. Node.js - <https://nodejs.org/en/download>
   2. npm - ```npm install -g```
   3. newman - ```newman install -g```                                         
