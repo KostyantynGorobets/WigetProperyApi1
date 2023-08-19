@@ -826,7 +826,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"randValue= Math.random() + Math.floor(Math.random() * 100) + pm.environment.get(\"max\")\r",
+									"randValue=Math.random() + Math.floor(Math.random() * 100) + Number(pm.environment.get(\"max\"))\r",
 									"pm.environment.set(\"valuePin\",randValue)\r",
 									"//expected\r",
 									"let expValue= pm.collectionVariables.get(\"pinValue\")"
@@ -839,11 +839,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{serverUrl}}.com/external/api/update?token={{deviceToken}}&{{idPin}}={{valuePin}}",
+							"raw": "https://{{serverUrl}}/external/api/update?token={{deviceToken}}&{{idPin}}={{valuePin}}",
 							"protocol": "https",
 							"host": [
-								"{{serverUrl}}",
-								"com"
+								"{{serverUrl}}"
 							],
 							"path": [
 								"external",
@@ -950,7 +949,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"randValue= pm.environment.get(\"min\") - Math.random() - Math.floor(Math.random() * 100)\r",
+									"randValue=Number( pm.environment.get(\"min\")) - Math.random() - Math.floor(Math.random() * 100)\r",
 									"pm.environment.set(\"valuePin\",randValue)\r",
 									"//expected\r",
 									"let expValue= pm.environment.get(\"valuePin\")"
@@ -1350,7 +1349,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"randValue= Math.random() + Math.floor(Math.random() * 100) + pm.environment.get(\"max\");\r",
+									"randValue= Math.random() + Math.floor(Math.random() * 100) + Number(pm.environment.get(\"max\"));\r",
 									"pm.environment.set(\"valuePin\",randValue);\r",
 									"//expected\r",
 									"let expValue= pm.environment.get(\"valuePin\")"
@@ -1477,7 +1476,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"randValue=pm.environment.get(\"min\") - ( Math.random() + Math.floor(Math.random() * 100));\r",
+									"randValue=Number(pm.environment.get(\"min\")) - ( Math.random() + Math.floor(Math.random() * 100));\r",
 									"pm.environment.set(\"valuePin\",randValue);\r",
 									"//expected\r",
 									"let expValue= pm.environment.get(\"valuePin\")"
@@ -1581,6 +1580,46 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "http://blynk-qa.com.com/external/api/update?gp=1&js=1&uuid=1692436624.0013756871&other_args=eyJ1cmkiOiAiL2V4dGVybmFsL2FwaS91cGRhdGUiLCAiYXJncyI6ICJ0b2tlbj1rOE1Kd3o1cmtCNThiZ0RIdmxjSE0yWFQ4TGxFNlNNcSZWMD0xIiwgInJlZmVyZXIiOiAiaHR0cHM6Ly9ibHluay1xYS5jb20uY29",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://blynk-qa.com.com/external/api/update?gp=1&js=1&uuid=1692436624.0013756871&other_args=eyJ1cmkiOiAiL2V4dGVybmFsL2FwaS91cGRhdGUiLCAiYXJncyI6ICJ0b2tlbj1rOE1Kd3o1cmtCNThiZ0RIdmxjSE0yWFQ4TGxFNlNNcSZWMD0xIiwgInJlZmVyZXIiOiAiaHR0cHM6Ly9ibHluay1xYS5jb20uY29tL2V4dGVybmFsL2FwaS91cGRhdGU_dG9rZW49azhNSnd6NXJrQjU4YmdESHZsY0hNMlhUOExsRTZTTXEmVjA9MSIsICJhY2NlcHQiOiAiKi8qIn0=",
+					"protocol": "http",
+					"host": [
+						"blynk-qa",
+						"com",
+						"com"
+					],
+					"path": [
+						"external",
+						"api",
+						"update"
+					],
+					"query": [
+						{
+							"key": "gp",
+							"value": "1"
+						},
+						{
+							"key": "js",
+							"value": "1"
+						},
+						{
+							"key": "uuid",
+							"value": "1692436624.0013756871"
+						},
+						{
+							"key": "other_args",
+							"value": "eyJ1cmkiOiAiL2V4dGVybmFsL2FwaS91cGRhdGUiLCAiYXJncyI6ICJ0b2tlbj1rOE1Kd3o1cmtCNThiZ0RIdmxjSE0yWFQ4TGxFNlNNcSZWMD0xIiwgInJlZmVyZXIiOiAiaHR0cHM6Ly9ibHluay1xYS5jb20uY29tL2V4dGVybmFsL2FwaS91cGRhdGU_dG9rZW49azhNSnd6NXJrQjU4YmdESHZsY0hNMlhUOExsRTZTTXEmVjA9MSIsICJhY2NlcHQiOiAiKi8qIn0="
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
