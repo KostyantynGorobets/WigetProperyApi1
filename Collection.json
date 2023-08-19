@@ -1,0 +1,1641 @@
+{
+	"info": {
+		"_postman_id": "5774737d-968f-4951-8eaf-7c22fed4e335",
+		"name": "WidgetPropertyApi1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25559098",
+		"_collection_link": "https://winter-capsule-746861.postman.co/workspace/MyTests~c6c016ce-cddf-4ead-8827-76adfe5f7fb7/collection/25559098-5774737d-968f-4951-8eaf-7c22fed4e335?action=share&source=collection_link&creator=25559098"
+	},
+	"item": [
+		{
+			"name": "InvalidTest",
+			"item": [
+				{
+					"name": "DataStreamInvalidToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									" pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"connection\");\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Content Body have key = 'error'\", () => {\r",
+									"    pm.response.to.have.error\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"host": true,
+							"content-length": true,
+							"user-agent": true,
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "content-typе",
+								"value": "application/json -d '[[1650378744000,0]]' -i",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/get?token={{$guid}}&dataStreamId={{idDataStream}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"get"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{$guid}}"
+								},
+								{
+									"key": "dataStreamId",
+									"value": "{{idDataStream}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Property",
+			"item": [
+				{
+					"name": "OnLable",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(`Property is \"${pm.environment.get(\"widgetProperty\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// random words\r",
+									"pm.environment.set(\"widgetProperty\", pm.variables.replaceIn(`{{$randomLoremWords}}`));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update/property?token={{deviceToken}}&pin={{idPin}}&onLabel={{widgetProperty}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update",
+								"property"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "pin",
+									"value": "{{idPin}}"
+								},
+								{
+									"key": "onLabel",
+									"value": "{{widgetProperty}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OffLable",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// random words\r",
+									"pm.environment.set(\"widgetProperty\", pm.variables.replaceIn(`{{$randomLoremWords}}`));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(`Property is \"${pm.environment.get(\"widgetProperty\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update/property?token={{deviceToken}}&pin={{idPin}}&offLabel={{widgetProperty}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update",
+								"property"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "pin",
+									"value": "{{idPin}}"
+								},
+								{
+									"key": "offLabel",
+									"value": "{{widgetProperty}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lable",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// random words\r",
+									"pm.environment.set(\"widgetProperty\", pm.variables.replaceIn(`{{$randomLoremWords}}`));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(`Property is \"${pm.environment.get(\"widgetProperty\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update/property?token={{deviceToken}}&pin={{idPin}}&label={{widgetProperty}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update",
+								"property"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "pin",
+									"value": "{{idPin}}"
+								},
+								{
+									"key": "label",
+									"value": "{{widgetProperty}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Color",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// random words\r",
+									"let properyRan = pm.variables.replaceIn(`{{$randomHexColor}}`);\r",
+									" properyRan= properyRan.slice(1);\r",
+									"pm.environment.set(\"widgetProperty\", properyRan);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(`Property is \"#${pm.environment.get(\"widgetProperty\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update/property?token={{deviceToken}}&pin={{idPin}}&color=%23{{widgetProperty}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update",
+								"property"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "pin",
+									"value": "{{idPin}}"
+								},
+								{
+									"key": "color",
+									"value": "%23{{widgetProperty}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DisabledTrue",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update/property?token={{deviceToken}}&pin={{idPin}}&isDisabled=true",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update",
+								"property"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "pin",
+									"value": "{{idPin}}"
+								},
+								{
+									"key": "isDisabled",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DisabledFalse",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update/property?token={{deviceToken}}&pin={{idPin}}&isDisabled=false",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update",
+								"property"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "pin",
+									"value": "{{idPin}}"
+								},
+								{
+									"key": "isDisabled",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HiddenTrue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update/property?token={{deviceToken}}&pin={{idPin}}&isHidden=true",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update",
+								"property"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "pin",
+									"value": "{{idPin}}"
+								},
+								{
+									"key": "isHidden",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HiddenFalse",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update/property?token={{deviceToken}}&pin={{idPin}}&isHidden=false",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update",
+								"property"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "pin",
+									"value": "{{idPin}}"
+								},
+								{
+									"key": "isHidden",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DataStreamPropertyPage",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// random number\r",
+									"let propertyNum = Math.floor(Math.random() * 10)+1;\r",
+									"pm.environment.set(\"widgetProperty\", propertyNum);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(`Property is \"${pm.environment.get(\"widgetProperty\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update/property?token={{deviceToken}}&pin={{idPin}}&page={{widgetProperty}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update",
+								"property"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "pin",
+									"value": "{{idPin}}"
+								},
+								{
+									"key": "page",
+									"value": "{{widgetProperty}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Content Body  do not have key = 'error'\", () => {",
+							"    pm.response.to.not.have.error",
+							"})",
+							"pm.response.to.have.status(200);",
+							"pm.test(\"Status code is 200\", function () {",
+							"",
+							"});",
+							"",
+							" "
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ValuePin",
+			"item": [
+				{
+					"name": "UpdatePinValueMax",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})\r",
+									"pm.test(`Property is \"${pm.environment.get(\"valuePin\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// pm.environment.set(\"max\", 1)\r",
+									"pm.environment.set(\"valuePin\", pm.environment.get(\"max\"))\r",
+									"//expected\r",
+									"let expValue= pm.environment.get(\"valuePin\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update?token={{deviceToken}}&{{idPin}}={{valuePin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "{{idPin}}",
+									"value": "{{valuePin}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPinValueMax",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let expValue=Number( pm.environment.get(\"valuePin\"))\r",
+									"pm.test(`Responce value ${pm.response.json()} must be equal to ${expValue}`, ()=> {\r",
+									"   pm.expect(pm.response.json()).to.equal(expValue)\r",
+									"  })\r",
+									"  \r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/get?token={{deviceToken}}&{{idPin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"get"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "{{idPin}}",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePinValueMin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})\r",
+									"pm.test(`Property is \"${pm.environment.get(\"valuePin\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"valuePin\", pm.environment.get(\"min\"))\r",
+									"//expected\r",
+									"let expValue= pm.environment.get(\"valuePin\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update?token={{deviceToken}}&{{idPin}}={{valuePin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "{{idPin}}",
+									"value": "{{valuePin}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPinValueMin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let expValue=Number(pm.environment.get(\"valuePin\"));\r",
+									"pm.test(`Responce value ${pm.response.json()} must be equal to ${expValue}`, ()=> {\r",
+									"   pm.expect(pm.response.json()).to.eql(expValue)\r",
+									"  })\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/get?token={{deviceToken}}&{{idPin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"get"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "{{idPin}}",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePinValueMoreMax",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body doesn't have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})\r",
+									"pm.test(`Property is \"${pm.environment.get(\"valuePin\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"randValue= Math.random() + Math.floor(Math.random() * 100) + pm.environment.get(\"max\")\r",
+									"pm.environment.set(\"valuePin\",randValue)\r",
+									"//expected\r",
+									"let expValue= pm.collectionVariables.get(\"pinValue\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}.com/external/api/update?token={{deviceToken}}&{{idPin}}={{valuePin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}",
+								"com"
+							],
+							"path": [
+								"external",
+								"api",
+								"update"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "{{idPin}}",
+									"value": "{{valuePin}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPinValueMoreMax",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let expValue=Number(pm.environment.get(\"valuePin\"));\r",
+									"pm.test(`Responce value ${pm.response.json()} must be less then ${expValue}`, ()=> {\r",
+									"   pm.expect(pm.response.json()).to.lessThan(expValue)\r",
+									"  })\r",
+									"  \r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/get?token={{deviceToken}}&{{idPin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"get"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "{{idPin}}",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePinValueLessMin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body doesn't have key = 'error'\", () => {\r",
+									"    pm.response.to.have.not.error\r",
+									"})\r",
+									" pm.test(`Property is \"${pm.environment.get(\"valuePin\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"randValue= pm.environment.get(\"min\") - Math.random() - Math.floor(Math.random() * 100)\r",
+									"pm.environment.set(\"valuePin\",randValue)\r",
+									"//expected\r",
+									"let expValue= pm.environment.get(\"valuePin\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update?token={{deviceToken}}&{{idPin}}={{valuePin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "{{idPin}}",
+									"value": "{{valuePin}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPinValueLessMin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let expValue= pm.environment.get(\"valuePin\")\r",
+									"pm.test(` ${expValue}  must be less then responce value ${pm.response.json()}`, ()=> {\r",
+									"   pm.expect(expValue).to.lessThan(pm.response.json())\r",
+									"  })\r",
+									"  \r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/get?token={{deviceToken}}&{{idPin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"get"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "{{idPin}}",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ValueDatastrem",
+			"item": [
+				{
+					"name": "UpdateDataStreamValueMax",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"});\r",
+									"pm.test(`Property is \"${pm.environment.get(\"valuePin\")}\"`);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"valuePin\", pm.environment.get(\"max\"));\r",
+									"//expected\r",
+									"let expValue= pm.environment.get(\"valuePin\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update?token={{deviceToken}}&dataStreamId={{idDataStream}}&value={{valuePin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "dataStreamId",
+									"value": "{{idDataStream}}"
+								},
+								{
+									"key": "value",
+									"value": "{{valuePin}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetDataStreamValueMax",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let expValue= Number(pm.environment.get(\"valuePin\"))\r",
+									"pm.test(`Value must be equal to ${expValue}`, ()=> {\r",
+									"   pm.expect(pm.response.json()).to.equal(expValue)\r",
+									"  })\r",
+									"  \r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/get?token={{deviceToken}}&dataStreamId={{idDataStream}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"get"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "dataStreamId",
+									"value": "{{idDataStream}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateDataStreamValueMin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})\r",
+									"pm.test(`Property is \"${pm.environment.get(\"valuePin\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"valuePin\",pm.environment.get(\"min\"))\r",
+									"//expected\r",
+									"let expValue= pm.environment.get(\"valuePin\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update?token={{deviceToken}}&dataStreamId={{idDataStream}}&value={{valuePin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "dataStreamId",
+									"value": "{{idDataStream}}"
+								},
+								{
+									"key": "value",
+									"value": "{{valuePin}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetDataStreamValue0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let expValue= Number(pm.environment.get(\"valuePin\"))\r",
+									"pm.test(`Responce value ${pm.response.json()} must be equal to ${expValue}`, ()=> {\r",
+									"   pm.expect(pm.response.json()).to.eql(expValue)\r",
+									"  })\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/get?token={{deviceToken}}&dataStreamId={{idDataStream}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"get"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "dataStreamId",
+									"value": "{{idDataStream}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateDataStreamMoreMax",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content Body doesn't have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})\r",
+									"pm.test(`Property is \"${pm.environment.get(\"valuePin\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"randValue= Math.random() + Math.floor(Math.random() * 100) + pm.environment.get(\"max\");\r",
+									"pm.environment.set(\"valuePin\",randValue);\r",
+									"//expected\r",
+									"let expValue= pm.environment.get(\"valuePin\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update?token={{deviceToken}}&dataStreamId={{idDataStream}}&value={{valuePin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "dataStreamId",
+									"value": "{{idDataStream}}"
+								},
+								{
+									"key": "value",
+									"value": "{{valuePin}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetDataStreamValueMoreMax",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let expValue= Number(pm.environment.get(\"valuePin\"));\r",
+									"pm.test(`Responce value ${pm.response.json()} is less then ${expValue}`, ()=> {\r",
+									"   pm.expect(pm.response.json()).to.lessThan(expValue)\r",
+									"  })\r",
+									"  \r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/get?token={{deviceToken}}&dataStreamId={{idDataStream}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"get"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "dataStreamId",
+									"value": "{{idDataStream}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateDataStreamValueLessMin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body doesn't have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})\r",
+									"pm.test(`Property is \"${pm.environment.get(\"valuePin\")}\"`)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"randValue=pm.environment.get(\"min\") - ( Math.random() + Math.floor(Math.random() * 100));\r",
+									"pm.environment.set(\"valuePin\",randValue);\r",
+									"//expected\r",
+									"let expValue= pm.environment.get(\"valuePin\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/update?token={{deviceToken}}&dataStreamId={{idDataStream}}&value={{valuePin}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"update"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "dataStreamId",
+									"value": "{{idDataStream}}"
+								},
+								{
+									"key": "value",
+									"value": "{{valuePin}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetDataStreamValueLessMin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let expValue= Number(pm.environment.get(\"valuePin\"))\r",
+									"pm.test(`${expValue}  is less then responce value ${pm.response.json()}`, ()=> {\r",
+									"   pm.expect(expValue).to.lessThan(pm.response.json())\r",
+									"  })\r",
+									"  \r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Content Body do not have key = 'error'\", () => {\r",
+									"    pm.response.to.not.have.error\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverUrl}}/external/api/get?token={{deviceToken}}&dataStreamId={{idDataStream}}",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"external",
+								"api",
+								"get"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{deviceToken}}"
+								},
+								{
+									"key": "dataStreamId",
+									"value": "{{idDataStream}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					" ",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response time is less than 300ms\", function () {",
+					" pm.expect(pm.response.responseTime).to.be.below(300);",
+					"});",
+					"pm.test(\"Content-Type is present\", function () {",
+					"    pm.response.to.have.header(\"connection\");",
+					"});",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "urlServer",
+			"value": "blynk-qa.com"
+		},
+		{
+			"key": "tokenHoroTest",
+			"value": "k8MJwz5rkB58bgDHvlcHM2XT8LlE6SMq"
+		},
+		{
+			"key": "property",
+			"value": ""
+		},
+		{
+			"key": "pinValue",
+			"value": ""
+		},
+		{
+			"key": "max",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "min",
+			"value": "0",
+			"type": "string"
+		}
+	]
+}
