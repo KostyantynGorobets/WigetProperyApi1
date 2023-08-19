@@ -1,6 +1,6 @@
 {
-	"id": "803f9fad-ab15-4e92-85ab-18dc8b0f312d",
-	"name": "WidgetPropertyApi",
+	"id": "2eb8534d-aff0-4433-afbb-abbeafe473af",
+	"name": "WidgetPropertyApi1",
 	"values": [
 		{
 			"key": "deviceToken",
@@ -52,6 +52,6 @@
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2023-08-19T09:28:03.740Z",
-	"_postman_exported_using": "Postman/10.17.1"
+	"_postman_exported_at": "2023-08-19T13:19:33.993Z",
+	"_postman_exported_using": "Postman/10.17.2"
 }
