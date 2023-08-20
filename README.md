@@ -3,7 +3,7 @@ This is a collection of tests for widgets type integer or double. It has the exe
 For to run your example you should  install :
   1. Node.js - <https://nodejs.org/en/download>
   2. npm - ```npm install -g```
-  3. newman - ```newman install -g```                                         
+  3. newman - ```npm install -g newman```                                         
 To run the test you need to download the repositories in any folder.
 The file Collection.json has the kit of tests for requests API.
 The file Environment.json has the kit of variables. These variables you should
