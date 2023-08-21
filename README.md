@@ -1,5 +1,5 @@
 # WiggetProperyApi1
-This is a collection of tests for widgets type integer or double. It has the exemple and you can run it.
+This is a collection of tests for widgets type integer or double.
 For to run your example you should  install :
   1. Node.js - <https://nodejs.org/en/download>
   2. npm - ```npm install -g```
