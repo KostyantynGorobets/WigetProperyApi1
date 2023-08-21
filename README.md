@@ -30,3 +30,8 @@ To run tests -
                        ```........./Your folder> newman run Collection.json -e Environment.json```              	  
 You can edit the number of iterations  ``` -n <number> ``` or timeout between tests ``` --delay-request <number ms> ``` etc.         
 The full kit of commands is <https://www.npmjs.com/package/newman#command-line-options>.
+
+
+
+https://github.com/KostyantynGorobets/WigetProperyApi1/assets/138788304/fe0bd888-5453-42c1-bcc7-bb8c9e50a87b
+
