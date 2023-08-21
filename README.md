@@ -1,5 +1,5 @@
 # WiggetProperyApi1
-This is a collection of tests for widgets type integer or double.
+This is a collection of tests for widgets type integer or double for the platform Blynk.
 For to run your example you should  install :
   1. Node.js - <https://nodejs.org/en/download>
   2. npm - ```npm install -g```
